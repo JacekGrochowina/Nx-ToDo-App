@@ -18,6 +18,7 @@
   "projects": {
     "todo": { "tags": [] },
     "todo-e2e": { "tags": [], "implicitDependencies": ["todo"] },
-    "material": { "tags": [] }
+    "material": { "tags": [] },
+    "todo-list": { "tags": [] }
   }
 }

@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@todo-app/material": ["libs/material/src/index.ts"]
+      "@todo-app/material": ["libs/material/src/index.ts"],
+      "@todo-app/todo-list": ["libs/todo-list/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

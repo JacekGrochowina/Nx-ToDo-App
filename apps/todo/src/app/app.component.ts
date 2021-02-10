@@ -46,10 +46,8 @@ export class AppComponent {
   doneTask(todo: Task): void {
     this.todosList.forEach((todoItem: Task, todoItemIndex: number) => {
       if(todoItem.id === todo.id) {
-        setTimeout(() => {
-          this.todosList.splice(todoItemIndex, 1);
-          this.donesList.push(todo);
-        }, 500);
+        this.todosList.splice(todoItemIndex, 1);
+        this.donesList.push(todo);
       }
     });
   }
