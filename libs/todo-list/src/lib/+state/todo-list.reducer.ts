@@ -36,7 +36,10 @@ const todoListReducer = createReducer(
   on(TodoListActions.loadTodoListFailure, (state, { error }) => ({
     ...state,
     error,
-  }))
+  })),
+  on(TodoListActions.addTodoTask, (state, { task }) =>
+    todoListAdapter.setAll(task, { ...state })
+  ),
 );
 
 export function reducer(state: State | undefined, action: Action) {

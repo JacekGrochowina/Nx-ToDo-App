@@ -20,3 +20,18 @@ export const loadTodoListFailure = createAction(
   TodoListTypes.loadTodoListFailure,
   props<{ error: any }>()
 );
+
+export const addTodoTask = createAction(
+  TodoListTypes.addTodoTask,
+  props<{ task: any }>()
+);
+
+export const delTodoTask = createAction(
+  TodoListTypes.delTodoTask,
+  props<{ index: any }>()
+);
+
+export const doneTodoTask = createAction(
+  TodoListTypes.doneTodoTask,
+  props<{ index: any }>()
+);

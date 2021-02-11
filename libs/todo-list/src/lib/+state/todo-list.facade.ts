@@ -26,5 +26,7 @@ export class TodoListFacade {
     this.store.dispatch(TodoListActions.init());
   }
 
-  
+  addTodoTask() {
+    this.store.dispatch(TodoListActions.addTodoTask({ task: 'test' }))
+  }
 }

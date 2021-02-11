@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+
+import { TodoListFacade } from '@todo-app/todo-list';
 
 interface Task {
   id: string;
@@ -11,7 +13,7 @@ interface Task {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   todosList: Task[] = [
     { id: this.newId(), content: 'Eat pizza' },
     { id: this.newId(), content: 'Watch TV' },
@@ -26,7 +28,15 @@ export class AppComponent {
     ]]
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private todoListFacade: TodoListFacade
+  ) {}
+
+  ngOnInit() {
+    this.todoListFacade.init();
+    // this.todoListFacade.addTodoTask();
+  }
 
   newId(): string {
     return '_' + Math.random().toString(36).substr(2, 9);
@@ -41,6 +51,8 @@ export class AppComponent {
 
     this.todosList.push(newTask);
     this.newTaskFormGroup.reset();
+
+    this.todoListFacade.addTodoTask();
   }
 
   doneTask(todo: Task): void {
