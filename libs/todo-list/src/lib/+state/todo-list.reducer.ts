@@ -25,21 +25,26 @@ export const initialState: State = todoListAdapter.getInitialState({
 
 const todoListReducer = createReducer(
   initialState,
-  on(TodoListActions.init, (state) => ({
-    ...state,
-    loaded: false,
-    error: null,
-  })),
-  on(TodoListActions.loadTodoListSuccess, (state, { todoList }) =>
-    todoListAdapter.setAll(todoList, { ...state, loaded: true })
-  ),
-  on(TodoListActions.loadTodoListFailure, (state, { error }) => ({
-    ...state,
-    error,
-  })),
-  on(TodoListActions.addTodoTask, (state, { task }) =>
-    todoListAdapter.setAll(task, { ...state })
-  ),
+  // on(TodoListActions.init, (state) => ({
+  //   ...state,
+  //   loaded: false,
+  //   error: null,
+  // })),
+  // on(TodoListActions.loadTodoListSuccess, (state, { todoList }) =>
+  //   todoListAdapter.setAll(todoList, { ...state, loaded: true })
+  // ),
+  // on(TodoListActions.loadTodoListFailure, (state, { error }) => ({
+  //   ...state,
+  //   error,
+  // })),
+  on(TodoListActions.addTodoTask, (state, { todoList }) => {
+    return todoListAdapter.addOne(todoList, state);
+    // console.log(todoList)
+    // return {
+    //   ...state,
+    //   todoList: todoList
+    // }
+  }),
 );
 
 export function reducer(state: State | undefined, action: Action) {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { TodoListFacade } from '@todo-app/todo-list';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 interface Task {
   id: string;
@@ -28,14 +30,23 @@ export class AppComponent implements OnInit {
     ]]
   });
 
+  private unsubscribeSubject = new Subject<void>();
+
   constructor(
     private fb: FormBuilder,
     private todoListFacade: TodoListFacade
   ) {}
 
   ngOnInit() {
-    this.todoListFacade.init();
+    // this.todoListFacade.init();
     // this.todoListFacade.addTodoTask();
+    // this.todoListFacade.todoList$;
+
+    this.todoListFacade.todoList$
+      .pipe(takeUntil(this.unsubscribeSubject))
+      .subscribe((todoList: any) => {
+        console.log(todoList);
+      });
   }
 
   newId(): string {
@@ -52,7 +63,12 @@ export class AppComponent implements OnInit {
     this.todosList.push(newTask);
     this.newTaskFormGroup.reset();
 
-    this.todoListFacade.addTodoTask();
+    this.todoListFacade.addTodoTask(newTask);
+    this.todoListFacade.todoList$
+      .pipe(takeUntil(this.unsubscribeSubject))
+      .subscribe((todoList: any) => {
+        console.log(todoList);
+      });
   }
 
   doneTask(todo: Task): void {
