@@ -220,6 +220,32 @@
           }
         }
       }
+    },
+    "type": {
+      "projectType": "library",
+      "root": "libs/type",
+      "sourceRoot": "libs/type/src",
+      "prefix": "todo-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/type/tsconfig.lib.json",
+              "libs/type/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/type/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/type"],
+          "options": {
+            "jestConfig": "libs/type/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

@@ -1,10 +1,14 @@
-import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as TodoListActions from './todo-list.actions';
 import { TodoListEntity } from './todo-list.models';
+import { TodoListTypes } from './todo-list.actions';
 
 export const TODO_LIST_FEATURE_KEY = 'todoList';
+
+export interface AppState {
+  todoList: EntityState<TodoListEntity>;
+}
 
 export interface State extends EntityState<TodoListEntity> {
   selectedId?: string | number; // which TodoList record has been selected
@@ -19,34 +23,29 @@ export interface TodoListPartialState {
 export const todoListAdapter: EntityAdapter<TodoListEntity> = createEntityAdapter<TodoListEntity>();
 
 export const initialState: State = todoListAdapter.getInitialState({
-  // set initial required properties
   loaded: false,
 });
 
-const todoListReducer = createReducer(
-  initialState,
-  // on(TodoListActions.init, (state) => ({
-  //   ...state,
-  //   loaded: false,
-  //   error: null,
-  // })),
-  // on(TodoListActions.loadTodoListSuccess, (state, { todoList }) =>
-  //   todoListAdapter.setAll(todoList, { ...state, loaded: true })
-  // ),
-  // on(TodoListActions.loadTodoListFailure, (state, { error }) => ({
-  //   ...state,
-  //   error,
-  // })),
-  on(TodoListActions.addTodoTask, (state, { todoList }) => {
-    return todoListAdapter.addOne(todoList, state);
-    // console.log(todoList)
-    // return {
-    //   ...state,
-    //   todoList: todoList
-    // }
-  }),
-);
+export function todoListReducer(
+  state: State = initialState,
+  action: TodoListActions.TodoActions
+) {
+  switch(action.type) {
+    
+    case TodoListTypes.addTodoTask:
+      return todoListAdapter.addOne(action.newTask, state);
 
-export function reducer(state: State | undefined, action: Action) {
-  return todoListReducer(state, action);
+    case TodoListTypes.delTodoTask:
+      return todoListAdapter.removeOne(action.id, state);
+
+    case TodoListTypes.doneTodoTask:
+      return todoListAdapter.updateOne({
+        id: action.id,
+        changes: action.changes
+      }, state);
+
+    default:
+      return state;
+
+  }
 }

@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-
-import { TodoListFacade } from '@todo-app/todo-list';
+import { State, TodoListEntity, TodoListFacade } from '@todo-app/todo-list';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
-interface Task {
-  id: string;
-  content: string;
-}
+import { Task } from '@todo-app/type';
 
 @Component({
   selector: 'todo-app-root',
@@ -16,13 +11,8 @@ interface Task {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  todosList: Task[] = [
-    { id: this.newId(), content: 'Eat pizza' },
-    { id: this.newId(), content: 'Watch TV' },
-    { id: this.newId(), content: 'Go a walk' },
-  ];
-
-  donesList: Task[] = [];
+  todosList: TodoListEntity[] = [];
+  donesList: TodoListEntity[] = [];
 
   newTaskFormGroup = this.fb.group({
     taskContent: ['', [
@@ -38,53 +28,41 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.todoListFacade.init();
-    // this.todoListFacade.addTodoTask();
-    // this.todoListFacade.todoList$;
-
-    this.todoListFacade.todoList$
-      .pipe(takeUntil(this.unsubscribeSubject))
-      .subscribe((todoList: any) => {
-        console.log(todoList);
-      });
-  }
-
-  newId(): string {
-    return '_' + Math.random().toString(36).substr(2, 9);
+    this.handleTodoList();
   }
 
   addNewTask(): void {
-    const newTaskContent: string = this.newTaskFormGroup.value.taskContent;
-    const newTask: Task = {
-      id: this.newId(),
-      content: newTaskContent
-    }
-
-    this.todosList.push(newTask);
+    this.todoListFacade.addTodoTask(this.generateNewTask());
     this.newTaskFormGroup.reset();
+  }
 
-    this.todoListFacade.addTodoTask(newTask);
+  doneTask(task: Task): void {
+    this.todoListFacade.doneTask(task.id);
+  }
+
+  deleteTask(task: Task): void {
+    this.todoListFacade.delTodoTask(task.id);
+  }
+
+  private newId(): string {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  }
+
+  private handleTodoList(): void {
     this.todoListFacade.todoList$
       .pipe(takeUntil(this.unsubscribeSubject))
-      .subscribe((todoList: any) => {
-        console.log(todoList);
+      .subscribe(( todoList: State ) => {
+        const entitiesArray: TodoListEntity[]  = Object.keys(todoList.entities).map(key => todoList.entities[key]);
+        this.todosList = entitiesArray.filter((item) => !item.done);
+        this.donesList = entitiesArray.filter((item) => item.done);
       });
   }
 
-  doneTask(todo: Task): void {
-    this.todosList.forEach((todoItem: Task, todoItemIndex: number) => {
-      if(todoItem.id === todo.id) {
-        this.todosList.splice(todoItemIndex, 1);
-        this.donesList.push(todo);
-      }
-    });
-  }
-
-  deleteTask(done: Task): void {
-    this.donesList.forEach((doneItem: Task, doneItemIndex: number) => {
-      if(doneItem.id === done.id) {
-        this.donesList.splice(doneItemIndex, 1);
-      }
-    });
+  private generateNewTask(): Task {
+    return {
+      id: this.newId(),
+      content: this.newTaskFormGroup.value.taskContent,
+      done: false
+    }
   }
 }

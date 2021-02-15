@@ -11,7 +11,7 @@ import { TodoListFacade } from './+state/todo-list.facade';
     CommonModule,
     StoreModule.forFeature(
       fromTodoList.TODO_LIST_FEATURE_KEY,
-      fromTodoList.reducer
+      fromTodoList.todoListReducer
     ),
     EffectsModule.forFeature([TodoListEffects]),
   ],

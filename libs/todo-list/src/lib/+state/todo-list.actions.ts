@@ -1,37 +1,34 @@
-import { createAction, props } from '@ngrx/store';
-import { TodoListEntity } from './todo-list.models';
+import { Action } from '@ngrx/store';
+import { Task } from '@todo-app/type';
 
 export enum TodoListTypes {
-  // loadTodoListSuccess = '[TodoList/API] Load TodoList Success',
-  // loadTodoListFailure = '[TodoList/API] Load TodoList Failure',
   addTodoTask = '[TodoTask] Add TodoTask',
-  // delTodoTask = '[TodoTask] Del TodoTask',
-  // doneTodoTask = '[TodoTask] Done TodoTask',
+  delTodoTask = '[TodoTask] Del TodoTask',
+  doneTodoTask = '[TodoTask] Done TodoTask',
 }
 
-export const init = createAction('[TodoList Page] Init');
+export class AddTodoTask implements Action {
+  readonly type = TodoListTypes.addTodoTask;
 
-// export const loadTodoListSuccess = createAction(
-//   TodoListTypes.loadTodoListSuccess,
-//   props<{ todoList: TodoListEntity[] }>()
-// );
+  constructor(public newTask: Task) {}
+}
 
-// export const loadTodoListFailure = createAction(
-//   TodoListTypes.loadTodoListFailure,
-//   props<{ error: any }>()
-// );
+export class DelTodoTask implements Action {
+  readonly type = TodoListTypes.delTodoTask;
+  
+  constructor(public id: string) {}
+}
 
-export const addTodoTask = createAction(
-  TodoListTypes.addTodoTask,
-  props<{ todoList: any }>()
-);
+export class DoneTodoTask implements Action {
+  readonly type = TodoListTypes.doneTodoTask;
 
-// export const delTodoTask = createAction(
-//   TodoListTypes.delTodoTask,
-//   props<{ index: any }>()
-// );
+  constructor(
+    public id: string,
+    public changes: Partial<Task>
+  ) {}
+}
 
-// export const doneTodoTask = createAction(
-//   TodoListTypes.doneTodoTask,
-//   props<{ index: any }>()
-// );
+export type TodoActions
+  = AddTodoTask
+  | DelTodoTask
+  | DoneTodoTask;

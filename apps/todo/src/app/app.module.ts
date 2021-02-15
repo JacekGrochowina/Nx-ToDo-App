@@ -11,9 +11,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
-// import { TodoListFacade } from 'libs/todo-list/src/lib/+state/todo-list.facade';
 import { TodoListFacade } from '@todo-app/todo-list';
-import { reducer } from '@todo-app/todo-list';
+import { todoListReducer } from '@todo-app/todo-list';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,20 +21,10 @@ import { reducer } from '@todo-app/todo-list';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MaterialModule,
-    StoreModule.forRoot(
-      {
-        todoList: reducer
-      },
-      {
-        metaReducers: !environment.production ? [] : [],
-        runtimeChecks: {
-          strictActionImmutability: true,
-          strictStateImmutability: true,
-        },
-      }
-    ),
-    EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreModule.forRoot({
+      todoList: todoListReducer
+    }),
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [TodoListFacade],
   bootstrap: [AppComponent],

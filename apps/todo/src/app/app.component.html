@@ -8,7 +8,6 @@
         matInput
         formControlName="taskContent"
         id="taskContent"
-        type="text"
         value="Eat pizza">
     </mat-form-field>
     
@@ -16,7 +15,6 @@
       mat-mini-fab
       color="primary"
       aria-label="Add task"
-      type="submit"
       class="button"
       [disabled]="!newTaskFormGroup.valid"
       (click)="addNewTask()">
@@ -29,6 +27,7 @@
   <mat-list-option *ngFor="let todo of todosList" (click)="doneTask(todo)">
     {{ todo.content }}
   </mat-list-option>
+  <p *ngIf="todosList.length === 0">Brak zadan do wykonania</p>
 </mat-selection-list>
 
 <mat-divider></mat-divider>
