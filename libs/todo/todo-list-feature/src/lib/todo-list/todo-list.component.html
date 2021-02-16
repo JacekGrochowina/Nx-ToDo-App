@@ -1,0 +1,6 @@
+<mat-selection-list #todos>
+  <mat-list-option *ngFor="let todo of todosList" (click)="doneTask(todo)">
+    {{ todo.content }}
+  </mat-list-option>
+  <p *ngIf="todosList.length === 0">Brak zadan do wykonania</p>
+</mat-selection-list>

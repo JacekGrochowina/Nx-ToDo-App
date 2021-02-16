@@ -246,6 +246,174 @@
           }
         }
       }
+    },
+    "todo-shell": {
+      "projectType": "library",
+      "root": "libs/todo/shell",
+      "sourceRoot": "libs/todo/shell/src",
+      "prefix": "todo-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/todo/shell/tsconfig.lib.json",
+              "libs/todo/shell/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/todo/shell/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/todo/shell"],
+          "options": {
+            "jestConfig": "libs/todo/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "todo-todo-list-data-access": {
+      "projectType": "library",
+      "root": "libs/todo/todo-list-data-access",
+      "sourceRoot": "libs/todo/todo-list-data-access/src",
+      "prefix": "todo-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/todo/todo-list-data-access/tsconfig.lib.json",
+              "libs/todo/todo-list-data-access/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/todo/todo-list-data-access/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/todo/todo-list-data-access"],
+          "options": {
+            "jestConfig": "libs/todo/todo-list-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "todo-list-data-access": {
+      "projectType": "library",
+      "root": "libs/todo/list-data-access",
+      "sourceRoot": "libs/todo/list-data-access/src",
+      "prefix": "todo-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/todo/list-data-access/tsconfig.lib.json",
+              "libs/todo/list-data-access/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/todo/list-data-access/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/todo/list-data-access"],
+          "options": {
+            "jestConfig": "libs/todo/list-data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "todo-todo-list-feature": {
+      "projectType": "library",
+      "root": "libs/todo/todo-list-feature",
+      "sourceRoot": "libs/todo/todo-list-feature/src",
+      "prefix": "todo-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/todo/todo-list-feature/tsconfig.lib.json",
+              "libs/todo/todo-list-feature/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/todo/todo-list-feature/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/todo/todo-list-feature"],
+          "options": {
+            "jestConfig": "libs/todo/todo-list-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "todo-todo-add-feature": {
+      "projectType": "library",
+      "root": "libs/todo/todo-add-feature",
+      "sourceRoot": "libs/todo/todo-add-feature/src",
+      "prefix": "todo-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/todo/todo-add-feature/tsconfig.lib.json",
+              "libs/todo/todo-add-feature/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/todo/todo-add-feature/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/todo/todo-add-feature"],
+          "options": {
+            "jestConfig": "libs/todo/todo-add-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "todo-todo-feature": {
+      "projectType": "library",
+      "root": "libs/todo/todo-feature",
+      "sourceRoot": "libs/todo/todo-feature/src",
+      "prefix": "todo-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/todo/todo-feature/tsconfig.lib.json",
+              "libs/todo/todo-feature/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/todo/todo-feature/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/todo/todo-feature"],
+          "options": {
+            "jestConfig": "libs/todo/todo-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

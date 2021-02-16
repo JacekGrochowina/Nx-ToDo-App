@@ -1,0 +1,8 @@
+<mat-list #dones>
+  <mat-list-item *ngFor="let done of donesList">
+    <h3 mat-line>{{ done.content }}</h3>
+    <button mat-icon-button (click)="deleteTask(done)">
+      <mat-icon class="mat-24 primary-icon">delete</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>

@@ -1,42 +1,11 @@
-<h1 class="mat-display-2">Todo App</h1>
+<router-outlet></router-outlet>
 
-<form [formGroup]="newTaskFormGroup">
-  <div class="form__row">
-    <mat-form-field class="grow">
-      <mat-label>Task Content</mat-label>
-      <input
-        matInput
-        formControlName="taskContent"
-        id="taskContent"
-        value="Eat pizza">
-    </mat-form-field>
-    
-    <button
-      mat-mini-fab
-      color="primary"
-      aria-label="Add task"
-      class="button"
-      [disabled]="!newTaskFormGroup.valid"
-      (click)="addNewTask()">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-</form>
+<!-- <h1 class="mat-display-2">Todo App</h1>
 
-<mat-selection-list #todos>
-  <mat-list-option *ngFor="let todo of todosList" (click)="doneTask(todo)">
-    {{ todo.content }}
-  </mat-list-option>
-  <p *ngIf="todosList.length === 0">Brak zadan do wykonania</p>
-</mat-selection-list>
+<todo-app-todo-add></todo-app-todo-add>
+
+<todo-app-todo-list></todo-app-todo-list>
 
 <mat-divider></mat-divider>
 
-<mat-list #dones>
-  <mat-list-item *ngFor="let done of donesList">
-    <h3 mat-line>{{ done.content }}</h3>
-    <button mat-icon-button (click)="deleteTask(done)">
-      <mat-icon class="mat-24 primary-icon">delete</mat-icon>
-    </button>
-  </mat-list-item>
-</mat-list>
+<todo-app-done-list></todo-app-done-list> -->
