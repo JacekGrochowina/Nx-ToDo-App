@@ -14,7 +14,29 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@todo-app/todo/list-data-access": [
+        "libs/todo/list-data-access/src/index.ts"
+      ],
+      "@todo-app/todo/type-util": [
+        "libs/todo/type-util/src/index.ts"
+      ],
+      "@todo-app/todo/shell": [
+        "libs/todo/shell/src/index.ts"
+      ],
+      "@todo-app/todo/app": [
+        "apps/todo/src/app/app.component.ts"
+      ],
+      "@todo-app/todo/todo-list-feature": [
+        "libs/todo/todo-list-feature/src/index.ts"
+      ],
+      "@todo-app/todo/todo-add-feature": [
+        "libs/todo/todo-add-feature/src/index.ts"
+      ],
+      "@todo-app/todo/todo-feature": [
+        "libs/todo/todo-feature/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

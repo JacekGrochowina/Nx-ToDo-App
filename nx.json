@@ -17,6 +17,17 @@
   },
   "projects": {
     "todo": { "tags": [] },
-    "todo-e2e": { "tags": [], "implicitDependencies": ["todo"] }
+    "todo-e2e": { "tags": [], "implicitDependencies": ["todo"] },
+    "material": { "tags": [] },
+    "todo-list": { "tags": [] },
+    "type": { "tags": [] },
+    "todo-shell": { "tags": [] },
+    "todo-todo-list-data-access": {
+      "tags": ["scope:shared", "type:data-access"]
+    },
+    "todo-list-data-access": { "tags": [] },
+    "todo-todo-list-feature": { "tags": [] },
+    "todo-todo-add-feature": { "tags": [] },
+    "todo-todo-feature": { "tags": [] }
   }
 }

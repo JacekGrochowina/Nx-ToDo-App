@@ -1,0 +1,11 @@
+.form__row {
+  display: flex;
+}
+
+.form__row > .grow {
+  flex-grow: 1;
+}
+
+.form__row > .button {
+  margin-left: 20px;
+}

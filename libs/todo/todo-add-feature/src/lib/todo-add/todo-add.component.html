@@ -1,0 +1,22 @@
+<form [formGroup]="newTaskFormGroup">
+  <div class="form__row">
+    <mat-form-field class="grow">
+      <mat-label>Task Content</mat-label>
+      <input
+        matInput
+        formControlName="taskContent"
+        id="taskContent"
+        value="Eat pizza">
+    </mat-form-field>
+
+    <button
+      mat-mini-fab
+      color="primary"
+      aria-label="Add task"
+      class="button"
+      [disabled]="!newTaskFormGroup.valid"
+      (click)="addNewTask()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</form>
